@@ -12,3 +12,15 @@ services:
         environment:
             MINIO_ACCESS_KEY: ${ACCESS_KEY}
             MINIO_SECRET_KEY: ${SECRET_KEY}
+        networks:
+            - webnet
+        logging:
+            driver: 'json-file'
+            options:
+                max-size: '8m'
+                max-file: '10'
+        restart: always
+networks:
+    webnet:
+        name: webnet
+        driver: bridge

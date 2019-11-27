@@ -6,7 +6,7 @@ services:
         image: minio/minio
         command: minio server /data
         expose:
-            - ${PORT}:9000
+            - 9000
         volumes:
             - ./data:/data
         environment:

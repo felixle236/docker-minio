@@ -5,8 +5,8 @@ services:
         container_name: minio
         image: minio/minio
         command: minio server /data
-        expose:
-            - 9000
+        ports:
+            - 9000:9000
         volumes:
             - ./data:/data
         environment:

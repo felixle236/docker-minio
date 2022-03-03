@@ -1,14 +1,15 @@
-version: '3.7'
+version: '3.9'
 
 services:
     minio:
         container_name: minio
         image: minio/minio
-        command: minio server /data
+        command: minio server /data --console-address ":9001"
         ports:
             - 9000:9000
+            - 9001:9001
         volumes:
-            - ./data:/data
+            - minio_data:/data
         environment:
             MINIO_ACCESS_KEY: ${ACCESS_KEY}
             MINIO_SECRET_KEY: ${SECRET_KEY}
@@ -20,6 +21,10 @@ services:
                 max-size: '8m'
                 max-file: '10'
         restart: always
+
+volumes:
+    minio_data:
+
 networks:
     webnet:
         name: webnet
